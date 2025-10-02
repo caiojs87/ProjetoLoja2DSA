@@ -20,12 +20,30 @@ namespace ProjetoLoja2DSA.Controllers
              //O CONSTRUTOR É CHAMADO QUANDO UMA NOVA INSTANCIA É CRIADA
             _usuarioRepositorio = usuarioRepositorio;
         }
-        
-        
-        
-        //INTERFACE QUE REPRESENTA O RESULTADO DA PÁGINA
-        public IActionResult Index()
+
+
+
+        //INTERFACE É UMA REPRESENTAÇAO DO RESULTADO (TELA)
+        [HttpGet]
+        public IActionResult Login()
         {
+            //RETORNA A PAGINA INDEX
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(string email, string senha)
+        {
+            var usuario = _usuarioRepositorio.ObterUsuario(email);
+
+            if (usuario != null && usuario.senha != senha)
+            {
+                return RedirectToAction("Index", "Cliente");
+            }
+            ModelState.AddModelError("", "Email / senha Inválidos");
+
+
+            //RETORNA A PAGINA INDEX
             return View();
         }
     }
