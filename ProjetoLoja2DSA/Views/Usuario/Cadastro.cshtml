@@ -1,0 +1,20 @@
+﻿@model ProjetoLoja2DSA.Models.Usuario;
+
+@{
+    ViewData["Tilte"] = "Cadastro";
+}
+<form asp-action= "Cadastro" method="post">
+
+    <div>
+        <label>Email</label>
+        <input type="email" required/>
+    </div>
+
+    <div>
+        <label>Senha</label>
+        <input type="password" required/>
+    </div>
+
+    <button>Cadastro</button>
+
+</form>
